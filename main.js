@@ -31,16 +31,21 @@ const glados = async () => {
 }
 
 const notify = async (contents) => {
-  const token = process.env.NOTIFY
-  if (!token || !contents) return
-  await fetch(`https://www.pushplus.plus/send`, {
+  // const token = process.env.NOTIFY
+  // if (!token || !contents) return
+  await fetch(`https://wxpusher.zjiecode.com/api/send/message`, {
     method: 'POST',
     headers: { 'content-type': 'application/json' },
     body: JSON.stringify({
-      token,
-      title: contents[0],
-      content: contents.join('<br>'),
-      template: 'markdown',
+      "appToken":"AT_affwX36KzSXVZOmJQx7kDGPOPtcD8ekd",
+      "content":"<h1>glados签到成功</h1>",
+      "summary":"glados签到成功",
+      "contentType":1,
+      "uids":[
+          "UID_wioyV7XbT6nedayAkSkNyexMF89N"
+      ],
+      "verifyPay":false, 
+      "verifyPayType":0 
     }),
   })
 }
