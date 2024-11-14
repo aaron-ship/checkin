@@ -38,7 +38,7 @@ const notify = async (contents) => {
     headers: { 'content-type': 'application/json' },
     body: JSON.stringify({
       "appToken":"AT_affwX36KzSXVZOmJQx7kDGPOPtcD8ekd",
-      "content":"<h1>glados签到成功</h1>",
+      "content":contents.join('<br>'),
       "summary":"glados签到成功",
       "contentType":1,
       "uids":[
