@@ -25,7 +25,9 @@ const glados = async () => {
       `date ${date}`,
       `Left Days ${Number(status.data.leftDays)}`,
     ])
-    return [
+    return {
+      title: `glados签到成功${balance}`,
+      contents: [
       'Checkin OK',
       `balance ${balance}`,
       `change ${change}`,
@@ -33,6 +35,7 @@ const glados = async () => {
       `${checkin.message}`,
       `Left Days ${Number(status.data.leftDays)}`,
     ]
+    }
   } catch (error) {
     return [
       'Checkin Error',
@@ -42,7 +45,7 @@ const glados = async () => {
   }
 }
 
-const notify = async (contents) => {
+const notify = async (title,contents) => {
   // const token = process.env.NOTIFY
   // if (!token || !contents) return
   await fetch(`https://wxpusher.zjiecode.com/api/send/message`, {
@@ -51,7 +54,7 @@ const notify = async (contents) => {
     body: JSON.stringify({
       "appToken": "AT_affwX36KzSXVZOmJQx7kDGPOPtcD8ekd",
       "content": contents.join('<br>'),
-      "summary": "glados签到成功",
+      "summary": title,
       "contentType": 1,
       "uids": [
         "UID_wioyV7XbT6nedayAkSkNyexMF89N"
